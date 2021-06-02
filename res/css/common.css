@@ -21,6 +21,10 @@ fieldset {border: 0;}
     height: 240px;
     overflow: hidden;
 }
+.wrap_img.small {
+    width: 222px;
+    height: 180px;
+}
 .bdr {
     border: 1px solid #E0E0E0;
     box-sizing: border-box;
@@ -36,9 +40,10 @@ fieldset {border: 0;}
 }
 /* s: section */
 section {
-    padding-left: 240px;
-    padding-right: 240px;
-    padding-top: 60px;
+    padding: 60px 240px;
+}
+section:last-of-type {
+    padding-bottom: 120px;
 }
 .hl {
     font-size: 24px;

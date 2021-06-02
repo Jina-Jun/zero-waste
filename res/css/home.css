@@ -1,7 +1,79 @@
+article {
+    display: flex;
+}
 .hl {
     text-align: left;
     line-height: 34px;
     margin-top: -4px;
+    margin-bottom: 20px;
+}
+section a:link, a:visited {
+    font-size: 14px;
+    text-decoration: underline;
+    color: #000;
+    position: absolute;
+}
+.sqr div {
+    height: 304px;
+    box-sizing: border-box;
+}
+.sqr.ltr div:first-of-type {
+    width: 632px;
+    padding: 40px;
+    margin-right: 24px;
+    margin-bottom: 24px;
+    position: relative;
+}
+.sqr.rtl div:last-of-type {
+    width: 632px;
+    padding: 40px;
+    margin-left:24px;
+    position: relative;
+}
+.sqr .hl {
+    margin-top: 16px;
+}
+.sqr a {
+    bottom: 40px;
+    left: 40px;
+}
+.left {
+    width: 222px;
+    margin-right: 24px;
+    position: relative;
+}
+.left p {
+    margin-bottom: 20px;
+}
+.tag {
+    margin: 0 6px 12px 0;
+}
+.right {
+    width: 714px;
+}
+.left a {
+    bottom: 0;
+    left: 0;
+}
+.right .content {
+    float: left;
+    margin-right: 24px;
+}
+.tips .content:nth-child(-n+3) {
+    margin-bottom: 40px;
+}
+.right .content:nth-child(3n) {
+    margin-right: 0px;
+}
+.right p {
+    font-weight: 700;
+    width: 222px;
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: break-word;
+    text-overflow: ellipsis;
+}
+.wrap_img.small {
     margin-bottom: 20px;
 }
 /* s: popup - login, create account */

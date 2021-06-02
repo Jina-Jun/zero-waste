@@ -1,9 +1,10 @@
 /* s: header common */
 .wrap_header {
-    max-width: 1440px;
+    width: 1440px;
     margin: 0 auto;
 }
 .wrap_nav {
+    width: 960px;
     padding: 0 240px;
     position: absolute;
     top: 36px;
@@ -33,7 +34,7 @@ nav a:link, nav a:visited {
     margin-right: 24px;
 }
 .btn_login {
-    width: 140px;
+    min-width: 140px;
     height: 32px;
     border: 2px solid #fff;
     border-radius: 16px;
@@ -87,7 +88,7 @@ nav a:link, nav a:visited {
 }
 .gr_header {
     height: 200px;
-    min-width: 1440px;
+    width: 100%;
     background: linear-gradient(#2610004d, #26100000);
     position: absolute;
 }
