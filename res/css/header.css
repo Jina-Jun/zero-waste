@@ -147,6 +147,7 @@ nav a:link, nav a:visited {
 }
 .dropdown .tag {
     margin-right: 8px;
+    margin-bottom: 0;
 }
 .bg_dropdown {
     width: 632px;

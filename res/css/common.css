@@ -25,6 +25,9 @@ fieldset {border: 0;}
     width: 222px;
     height: 180px;
 }
+.wrap_img img {
+    height: 100%;
+}
 .bdr {
     border: 1px solid #E0E0E0;
     box-sizing: border-box;

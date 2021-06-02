@@ -13,6 +13,9 @@ section a:link, a:visited {
     color: #000;
     position: absolute;
 }
+section a:hover {
+    color: #2F80ED;
+}
 .sqr div {
     height: 304px;
     box-sizing: border-box;
@@ -36,6 +39,9 @@ section a:link, a:visited {
 .sqr a {
     bottom: 40px;
     left: 40px;
+}
+.sqr .wrap_img img {
+    margin-left: -20%;
 }
 .left {
     width: 222px;

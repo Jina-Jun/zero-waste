@@ -11,6 +11,16 @@
     <link rel="stylesheet" href="./res/css/common.css">
     <link rel="stylesheet" href="./res/css/header.css"> 
     <link rel="stylesheet" href="./res/css/home.css">
+    <script src="./res/js/header.js"></script>
+    <script>
+        $(function(){
+            // hashtag
+            $('.tag').click(function(){
+                $(this).toggleClass('b');
+                $(this).toggleClass('g');
+            });
+        });
+    </script>
 </head>
 <body>
     <!-- s: header large -->
@@ -56,12 +66,12 @@
                     <a href="#">더 알아보기</a>
                 </div>
                 <div class="wrap_img bdr">
-                    <img src="" alt="">
+                    <img src="./res/img/home/001.jpeg" alt="zero waste shopping tip image">
                 </div>
             </article>
             <article class="sqr rtl">
                 <div class="wrap_img bdr">
-                    <img src="" alt="">
+                    <img src="./res/img/home/002.jpeg" alt="zero waste store image">
                 </div>
                 <div class="bdr">
                     <p>플라스틱 제로</p>
@@ -76,7 +86,7 @@
                     <p class="hl">1DAY 1QUEST</p>
                     <p>제로 웨이스트 실천 팁을<br>소개합니다.</p>
                     <div class="tags">
-                        <span class="tag g">#분리배출</span>
+                        <span class="tag b">#분리배출</span>
                         <span class="tag g">#재사용</span>
                         <span class="tag g">#플라스틱제로</span>
                         <span class="tag g">#용기내</span>
@@ -130,26 +140,26 @@
                 <div class="left">
                     <p class="hl">NOTICE</p>
                     <p>제로 웨이스트관련 행사를<br>확인하세요.</p>
-                    <a href="#">더 알아보기</a>
+                    <a href="#">확인하러 가기</a>
                 </div>
                 <div class="right">
                     <div class="content">
                         <div class="wrap_img small bdr">
-                            <img src="" alt="content image">
+                            <img src="./res/img/home/notice_1.jpeg" alt="notice image">
                         </div>
-                        <p class="tit">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p class="tit">미션: 플라스틱 병뚜껑 3개를 모아오세요.</p>
                     </div>
                     <div class="content">
                         <div class="wrap_img small bdr">
-                            <img src="" alt="content image">
+                            <img src="./res/img/home/notice_2.jpeg" alt="notice image">
                         </div>
-                        <p class="tit">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p class="tit">플라스틱 컵으로 텃밭 가꾸기 - 파테크 편</p>
                     </div>
                     <div class="content">
                         <div class="wrap_img small bdr">
-                            <img src="" alt="content image">
+                            <img src="/res/img/home/notice_3.jpeg" alt="notice image">
                         </div>
-                        <p class="tit">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+                        <p class="tit">END가 아닌 AND. 2021, 톤28 지구특공대의 플로깅이 시작되었습니다.</p>
                     </div>
                 </div>
             </article>
