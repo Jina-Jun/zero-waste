@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- browser tab icon -->
+    <link rel="icon" href="#">
+    <title>로그인 - 1D1Q</title>
+    <script src="./res/lib/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="./res/css/common.css">   
+    <link rel="stylesheet" href="./res/css/home.css">  
+    <!-- api kakao -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- api google -->
+    <meta name="google-signin-client_id" content="951512135887-qs5bna33cl8u7hn1b2dbu42eb9md54vv.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/api:client.js"></script>
+    <!-- api naver -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+
+    <script>
+        /* s: kakao login */
+        function init_kakao(){
+            Kakao.init('6837dc955d4dc50317e861f0e16a429f');
+            console.log(Kakao.isInitialized());
+        }
+        function getProfile(){
+            Kakao.API.request({
+                url: '/v2/user/me',
+                data: {
+                    property_keys: ["kakao_account.email","kakao_account.nickname"]
+                },
+                success: function(response) {
+                    console.log(response);
+                },
+                fail: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+        function loginWithKakao() {
+            Kakao.Auth.login({
+                success: function(authObj) {
+                alert(JSON.stringify(authObj))
+                getProfile();
+                },
+                fail: function(err) {
+                alert(JSON.stringify(err))
+                },
+            })
+        }
+        /* e: kakao login */
+        /* s: google login */
+        var googleUser = {};
+        var startApp = function() {
+            gapi.load('auth2', function(){
+            // Retrieve the singleton for the GoogleAuth library and set up the client.
+            auth2 = gapi.auth2.init({
+                client_id: '951512135887-qs5bna33cl8u7hn1b2dbu42eb9md54vv.apps.googleusercontent.com',
+                cookiepolicy: 'single_host_origin',
+                // Request scopes in addition to 'profile' and 'email'
+                // scope: 'additional_scope'
+            });
+            attachSignin(document.getElementById('customBtn'));
+            });
+            function attachSignin(element) {
+                auth2.attachClickHandler(element, {},
+                    function(googleUser) {
+                        console.log('ID: ' + googleUser.getBasicProfile().getId()); // Do not send to your backend! Use an ID token instead.
+                        console.log('Name: ' + googleUser.getBasicProfile().getName());
+                        console.log('Image URL: ' + googleUser.getBasicProfile().getImageUrl());
+                        console.log('Email: ' + googleUser.getBasicProfile().getEmail()); // This is null if the 'email' scope is not present.
+                    }, function(error) {
+                        alert(JSON.stringify(error, undefined, 2));
+                    });
+            }
+        };
+        /* e: google login */
+        
+        $(function(){
+            $('input').focus(function(){
+                $(this).parent().addClass('active');
+            });
+            $('input').blur(function(){
+                $(this).parent().removeClass('active');
+            });
+            $('form').submit(function(e){
+                e.preventDefault();
+                checkInputs();
+            })
+            $('input').keyup(checkInputs);
+
+            init_kakao();
+            $('#login_kakao').click(function(e){
+                e.preventDefault();
+                loginWithKakao();
+            });
+            startApp();
+        });
+        function checkInputs(){
+            const email = $('#email');
+            const emailVal = $('#email').val().trim();
+
+            if(emailVal === ''){
+                // show error
+                // add error class
+                setErrorFor(email, '이메일 주소를 입력해 주십시오.');
+            } else if(!isEmail(emailVal)){
+                setErrorFor(email, '이메일 형식에 맞게 입력해 주십시오.');
+            } else {
+                setSuccessFor(email);
+            }
+        }
+        function setErrorFor(input, message){
+            const txtField = input.parent();
+            const msgError = input.next();
+            // add error msg
+            msgError.text(message);
+            // add error class
+            txtField.addClass('error');
+        }
+        function setSuccessFor(input){
+            const txtField = input.parent();
+            const msgError = input.next();
+            txtField.removeClass('error');
+            msgError.remove();
+        }
+        function isEmail(email) {
+            var pattern = /[!@#$%^&*()_\+\=\-\[\]\"\']/
+            return  pattern .test(email);
+        }
+    </script>
+</head>
+<body>
+    <div class="overlay">
+        <div class="popup">
+            <p class="tit">로그인</p>
+            <p class="msg_spt">신규 사용자이신가요?<a href="./home_create_account.html">계정 만들기</a></p>
+            <form action="#" method="post">
+                <fieldset>
+                    <div class="txt_field">
+                        <label for="email">이메일 주소</label>
+                        <input type="email" name="email" id="email">
+                        <p class="msg_error"></p>
+                    </div>
+                </fieldset>
+                <button class="btn g r"><a href="./home_login_password.html">계속</a></button>
+            </form>
+            <div class="social_login">
+                <p>간편 로그인</p>
+                <button id="customBtn" class="customGPlusSignIn">
+                    <span class="icon"></span>
+                    <span class="buttonText">Google</span>
+                </button>
+                <button class="btn" id="login_kakao" href='javascript:loginWithKakao()'>Kakao</button>
+                <button class="btn" id="login_naver">Naver</button>
+            </div>
+            <div class="privacy">
+                <a href="#">개인정보처리방침</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
