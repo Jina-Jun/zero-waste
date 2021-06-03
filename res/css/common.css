@@ -9,6 +9,12 @@
     font-weight: 700;
 }
 * {margin: 0; padding: 0; font-family: 'roboto'; font-weight: 400;}
+::selection {
+    background-color: #2F80ED26;
+}
+::-moz-selection {
+    background-color: #2F80ED26;
+}
 ul {list-style-type: none;}
 a:link, a:visited {text-decoration: none;}
 fieldset {border: 0;}
@@ -43,10 +49,10 @@ fieldset {border: 0;}
 }
 /* s: section */
 section {
-    padding: 60px 240px;
+    padding: 80px 240px;
 }
 section:last-of-type {
-    padding-bottom: 120px;
+    padding-bottom: 160px;
 }
 .hl {
     font-size: 24px;
@@ -60,9 +66,44 @@ section:last-of-type {
 /* e: section */
 /* s: footer */
 footer {
-    border-top: 2px solid #F0F0F0;
-    padding: 40px 0;
+    border-top: 1px solid #F0F0F0;
+    background-color: #fafafa;
+    padding: 30px 0;
     clear: both;
+    color: #4F4F4F;
+}
+.wrap_footer {
+    width: 1440px;
+    margin: 0 auto;
+    padding: 0 240px;
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.ft_ctn {
+    display: flex;
+    align-items: center;
+    height: 32px;
+}
+.ft_ctn a:link, .ft_ctn a:visited {
+    text-decoration: underline;
+    font-size: 12px;
+    color: #4F4F4F;
+    margin-right: 24px;
+}
+.copyright {
+    width: 222px;
+    margin-right: 24px;
+    font-size: 12px;
+}
+.i_sns {
+    position: absolute;
+    right: 240px;
+    font-size: 0;
+}
+.i_sns a {
+    margin-left: 12px;
 }
 /* e: footer */
 /* s: icon */
@@ -246,11 +287,9 @@ fieldset + button {
     margin-right: 8px;
 }
 .terms_item a:link, .terms_item a:visited, .privacy a:link, .privacy a:visited {
+    font-size: 12px;
     text-decoration: underline;
     color: #000;
-}
-.privacy {
-    font-size: 12px;
 }
 /* e: checkup terms */
 /* s: social login/ */
@@ -269,17 +308,17 @@ fieldset + button {
 #customBtn:hover {
     cursor: pointer;
 }
-span.icon {
-    background: url('./res/img/icon/google.png') transparent center no-repeat;
-    display: inline-block;
-    vertical-align: middle;
+#customBtn .icon {
+    background-image: url('../img/icon/google.png');
+    background-position: center;
     width: 38px;
     height: 38px;
     position: absolute;
     top: 0;
-    left: 5px;
+    left: 4px;
+    border-radius: 20px;
 }
-span.buttonText {
+#customBtn .buttonText {
     display: inline-block;
     font-size: 14px;
 }

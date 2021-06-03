@@ -44,6 +44,12 @@
     position: relative;
     margin-bottom: 60px;
 }
+.content.grid:last-of-type {
+    margin-bottom: 160px;
+}
+.content.list:last-of-type {
+    margin-bottom: 0;
+}
 .content.grid {
     width: 304px;
     float: left;

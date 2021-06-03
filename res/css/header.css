@@ -33,6 +33,16 @@ nav a:link, nav a:visited {
     width: 140px;
     margin-right: 24px;
 }
+nav a:hover::before {
+    content: '';
+    display: inline-block;
+    width: 20px;
+    height: 2px;
+    background-color: #2F80ED;
+    border-radius: 1px;
+    position: absolute;
+    top: -2px;
+}
 .btn_login {
     min-width: 140px;
     height: 32px;
@@ -40,8 +50,12 @@ nav a:link, nav a:visited {
     border-radius: 16px;
     background-color: #ffffff40;
     text-align: center;
-    padding: 3px 0;
+    padding: 4px 0;
     box-sizing: border-box;
+}
+.btn_login:hover {
+    border: 2px solid #2F80ED;
+    background-color: #2F80ED40;
 }
 .search_bar {
     width: 468px;
@@ -71,6 +85,7 @@ nav a:link, nav a:visited {
     color: #fff;
 }
 .search_bar button {
+    font-size: 0;
     width: 44px;
     height: 44px;
     background-image: url(../img/icon/search.svg);
