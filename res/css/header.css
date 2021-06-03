@@ -59,28 +59,34 @@ nav a:link, nav a:visited {
     font-size: 18px;
     font-weight: 700;
     color: #fff;
-    padding: 0 20px;
+    padding: 0 14px;
     box-sizing: border-box;
     outline: 0;
 }
 .placeholder {
     position: absolute;
     top: 14px;
-    left: 22px;
+    left: 16px;
     font-size: 18px;
     color: #fff;
 }
-.i.search {
-    width: 52px;
-    height: 52px;
+.search_bar button {
+    width: 44px;
+    height: 44px;
     background-image: url(../img/icon/search.svg);
     background-color: #00000000;
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    right: 6px;
+    top: 4px;
+    right: 4px;
     border: 0;
     outline: 0;
+    z-index: 999;
+}
+.search_bar button:hover {
+    background-color: #f8f8f840;
+    border-radius: 22px;
 }
 .wrap_bg_header {
     position: relative;

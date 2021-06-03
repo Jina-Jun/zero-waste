@@ -58,8 +58,13 @@ $(function(){
         // delete all
         $('.del_all').click(function(){
             $('.recent .tag').remove();
+            $('.search_bar input').focus(); 
         });
         // add recent
-        
+        $('.i.search').click(function(){
+            if($('.search_bar input').val() === '') return;
+            $('.recent').append(`<span class="tag s">${$('.search_bar input').val()}</span>`);
+            $('.search_bar input').val('').focus();
+        });
     });
 });
