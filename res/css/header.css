@@ -128,11 +128,13 @@ nav a:link, nav a:visited {
     top: 26px;
 }
 .wrap_item_dropdown {
-    padding-top: 40px;
-    padding-left: 20px;
-    padding-right: 20px;
+    margin-top: 26px;
+    padding: 14px 20px 16px;
+    background-color: #fff;
+    border-bottom-left-radius: 28px;
+    border-bottom-right-radius: 28px;
 }
-.dropdown .item {
+.dropdown .recent {
     margin-bottom: 16px;
 }
 .dropdown p {
@@ -149,9 +151,9 @@ nav a:link, nav a:visited {
     margin-right: 8px;
     margin-bottom: 0;
 }
-.bg_dropdown {
+.bg_dropdown{
     width: 632px;
-    height: 198px;
+    height: 26px;
     background-image: url(../img/header/dropdown.svg);
     background-repeat: no-repeat;
     position: absolute;

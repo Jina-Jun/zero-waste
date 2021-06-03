@@ -121,9 +121,8 @@ footer {
     box-sizing: border-box;
 }
 .tag.s {
-    padding: 13px 21px;
     background-color: #fff;
-    border: 1px solid #E0E0E0;
+    border: 2px solid #F0F0F0;
 }
 .tag.g {
     background-color: #F0F0F0;
@@ -134,9 +133,14 @@ footer {
     border: 2px solid #2F80ED;
     color: #fff;
 }
-.tag.hvr.b {
+.tag.sel.b {
     background-color: #fff;
     border: 2px solid #2F80ED;
+    color: #000;
+}
+.tag.hover {
+    background-color: #fff;
+    border: 2px solid #2F80ED40;
     color: #000;
 }
 /* e: tag */

@@ -15,7 +15,15 @@
     <script>
         $(function(){
             // hashtag
-            $('.tag').click(function(){
+            $('.tag').mouseenter(function(){
+                $(this).addClass('hover');
+            })
+            $('.tag').on('mouseleave click', function(){
+                $(this).removeClass('hover');
+            })
+            $('.tag').on('click mouseup', function(){
+                $('.tag').removeClass('b');
+                $('.tag').addClass('g');
                 $(this).toggleClass('b');
                 $(this).toggleClass('g');
             });
