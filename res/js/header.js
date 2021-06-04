@@ -31,7 +31,34 @@ $(function(){
                     </div>
                 </div>
             <div class="bg_dropdown"></div>`);
-        // hashtag
+        selTags();
+        // add recent
+        $('.search_bar button').click(function(){
+            addRecent();
+        });
+        $('.search_bar input').keyup(function(e){
+            if(e.keyCode === 13)
+                addRecent();
+        });
+        // delete all tags
+        delAllTags();
+    });
+    var delAllTags = function(){
+        $('.del_all').click(function(){
+            $('.recent .tag').remove();
+            $('.search_bar input').focus();
+        });
+    }
+    var addRecent = function(){
+        if($('.search_bar input').val() === '') return;
+        $('.recent').append(`<span class="tag s">${$('.search_bar input').val()}</span>`);
+        $('.search_bar input').val('').focus();
+        if($('.recent span').length > 5) {
+            $('.recent span:first-child').remove();
+        }
+        selTags();
+    };
+    var selTags = function(){
         $('.dropdown .tag').mouseenter(function(){
             $(this).addClass('hover');
         })
@@ -42,12 +69,14 @@ $(function(){
             var input_txt = $(this).text();
             if($(this).parent().hasClass('recent')){
                 $('.search_bar input').val(input_txt);
+                $('.search_bar input').focus();
                 $('.suggest .tag').removeClass('sel');
                 $('.recent .tag').removeClass('sel b');
                 $('.recent .tag').addClass('s');
                 $(this).toggleClass('s');
             } else if($(this).parent().hasClass('suggest')){
                 $('.search_bar input').val(input_txt.substr(1));
+                $('.search_bar input').focus();
                 $('.recent .tag').removeClass('sel b');
                 $('.recent .tag').addClass('s');
                 $('.suggest .tag').removeClass('sel');
@@ -55,16 +84,5 @@ $(function(){
             }
             $(this).toggleClass('sel b');
         });
-        // delete all
-        $('.del_all').click(function(){
-            $('.recent .tag').remove();
-            $('.search_bar input').focus(); 
-        });
-        // add recent
-        $('.i.search').click(function(){
-            if($('.search_bar input').val() === '') return;
-            $('.recent').append(`<span class="tag s">${$('.search_bar input').val()}</span>`);
-            $('.search_bar input').val('').focus();
-        });
-    });
+    };
 });

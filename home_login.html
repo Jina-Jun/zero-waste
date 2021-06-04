@@ -11,72 +11,67 @@
     <link rel="stylesheet" href="./res/css/common.css">   
     <link rel="stylesheet" href="./res/css/home.css">  
     <!-- api kakao -->
-    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <!-- api google -->
+    <meta name="google-signin-scope" content="profile email">
     <meta name="google-signin-client_id" content="951512135887-qs5bna33cl8u7hn1b2dbu42eb9md54vv.apps.googleusercontent.com">
-    <script src="https://apis.google.com/js/api:client.js"></script>
+    <script src="https://apis.google.com/js/client.js"></script>
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
     <!-- api naver -->
-    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 
     <script>
-        /* s: kakao login */
-        function init_kakao(){
-            Kakao.init('6837dc955d4dc50317e861f0e16a429f');
-            console.log(Kakao.isInitialized());
-        }
-        function getProfile(){
-            Kakao.API.request({
-                url: '/v2/user/me',
-                data: {
-                    property_keys: ["kakao_account.email","kakao_account.nickname"]
-                },
-                success: function(response) {
-                    console.log(response);
-                },
-                fail: function(error) {
-                    console.log(error);
-                }
-            });
-        }
-        function loginWithKakao() {
-            Kakao.Auth.login({
-                success: function(authObj) {
-                alert(JSON.stringify(authObj))
-                getProfile();
-                },
-                fail: function(err) {
-                alert(JSON.stringify(err))
-                },
-            })
-        }
-        /* e: kakao login */
-        /* s: google login */
-        var googleUser = {};
-        var startApp = function() {
-            gapi.load('auth2', function(){
-            // Retrieve the singleton for the GoogleAuth library and set up the client.
-            auth2 = gapi.auth2.init({
-                client_id: '951512135887-qs5bna33cl8u7hn1b2dbu42eb9md54vv.apps.googleusercontent.com',
-                cookiepolicy: 'single_host_origin',
-                // Request scopes in addition to 'profile' and 'email'
-                // scope: 'additional_scope'
-            });
-            attachSignin(document.getElementById('customBtn'));
-            });
-            function attachSignin(element) {
-                auth2.attachClickHandler(element, {},
-                    function(googleUser) {
-                        console.log('ID: ' + googleUser.getBasicProfile().getId()); // Do not send to your backend! Use an ID token instead.
-                        console.log('Name: ' + googleUser.getBasicProfile().getName());
-                        console.log('Image URL: ' + googleUser.getBasicProfile().getImageUrl());
-                        console.log('Email: ' + googleUser.getBasicProfile().getEmail()); // This is null if the 'email' scope is not present.
-                    }, function(error) {
-                        alert(JSON.stringify(error, undefined, 2));
-                    });
+        window.onload = function(){
+            /* s: naver login */
+
+            /* e: naver login */
+            /* s: kakao login */
+            
+            /* e: kakao login */
+            /* s: google login */
+            function onSignIn(googleUser) {
+                // Useful data for your client-side scripts:
+                var profile = googleUser.getBasicProfile();
+                console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                console.log('Full Name: ' + profile.getName());
+                console.log("Image URL: " + profile.getImageUrl());
+                console.log("Email: " + profile.getEmail());
+
+                // The ID token you need to pass to your backend:
+                var id_token = googleUser.getAuthResponse().id_token;
+                console.log("ID Token: " + id_token);
             }
-        };
-        /* e: google login */
-        
+            function init() {
+                gapi.load('auth2', function() {
+                    gapi.auth2.init();
+                    options = new gapi.auth2.SigninOptionsBuilder();
+                    options.setPrompt('select_account');
+                    // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+                    options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+                    gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+                })
+            }
+            
+            function onSignIn(googleUser) {
+                var access_token = googleUser.getAuthResponse().access_token
+                $.ajax({
+                    // people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+                    url: 'https://people.googleapis.com/v1/people/me'
+                    , data: {personFields:'birthdays', key:'AIzaSyAZDBJHv35DRlQotWKyGGwqWD4GIYvgbFo', 'access_token': access_token}
+                    , method:'GET'
+                })
+                .done(function(e){
+                    // get profile
+                    var profile = googleUser.getBasicProfile();
+                    console.log(profile)
+                })
+                .fail(function(e){
+                    console.log(e);
+                })
+            }
+            function onSignInFailure(t){		
+                console.log(t);
+            }
+            /* e: google login */
+        }
         $(function(){
             $('input').focus(function(){
                 $(this).parent().addClass('active');
@@ -89,13 +84,6 @@
                 checkInputs();
             })
             $('input').keyup(checkInputs);
-
-            init_kakao();
-            $('#login_kakao').click(function(e){
-                e.preventDefault();
-                loginWithKakao();
-            });
-            startApp();
         });
         function checkInputs(){
             const email = $('#email');
@@ -148,11 +136,8 @@
             </form>
             <div class="social_login">
                 <p>간편 로그인</p>
-                <button id="customBtn" class="customGPlusSignIn">
-                    <span class="icon"></span>
-                    <span class="buttonText">Google</span>
-                </button>
-                <button class="btn" id="login_kakao" href='javascript:loginWithKakao()'>Kakao</button>
+                <div  id="GgCustomLogin" class="g-signin2" data-onsuccess="onSignIn"></a></div>
+                <button class="btn" id="login_kakao">Kakao</button>
                 <button class="btn" id="login_naver">Naver</button>
             </div>
             <div class="privacy">
