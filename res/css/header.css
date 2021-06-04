@@ -181,4 +181,10 @@ nav a:hover::before {
     top: 0;
     z-index: -998;
 }
+table tr{
+    height: 35px;
+    width: 632px;
+    padding: 0 20px;
+    vertical-align: middle;
+}
 /* e: header active */

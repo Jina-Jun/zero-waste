@@ -43,13 +43,13 @@ $(function(){
         // delete all tags
         delAllTags();
     });
-    var delAllTags = function(){
+    function delAllTags(){
         $('.del_all').click(function(){
             $('.recent .tag').remove();
             $('.search_bar input').focus();
         });
     }
-    var addRecent = function(){
+    function addRecent(){
         if($('.search_bar input').val() === '') return;
         $('.recent').append(`<span class="tag s">${$('.search_bar input').val()}</span>`);
         $('.search_bar input').val('').focus();
@@ -58,7 +58,7 @@ $(function(){
         }
         selTags();
     };
-    var selTags = function(){
+    function selTags(){
         $('.dropdown .tag').mouseenter(function(){
             $(this).addClass('hover');
         })
