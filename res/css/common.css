@@ -18,6 +18,9 @@
 ul {list-style-type: none;}
 a:link, a:visited {text-decoration: none;}
 fieldset {border: 0;}
+b {
+    font-weight: 700;
+}
 .container {
     width: 1440px;
     margin: 0 auto;
@@ -62,6 +65,14 @@ section:last-of-type {
 }
 .sl {
     text-align: center;
+}
+.txt_help {
+    color: #219653;
+    font-weight: 700;
+}
+.txt_blue {
+    color: #2F80ED;
+    font-weight: 700;
 }
 /* e: section */
 /* s: footer */

@@ -3,10 +3,6 @@ $(function(){
     $('.search_bar input').one('focus', function(){
         $('.placeholder').hide();
         $('header').addClass('active');
-        if($('header').hasClass('small')){
-            $('header').removeClass('small');
-            $('header').addClass('large');
-        }
         $('.search_bar').append(`
             <div class="dropdown">
                 <div class="wrap_item_dropdown">
@@ -31,7 +27,32 @@ $(function(){
                     </div>
                 </div>
             <div class="bg_dropdown"></div>`);
+        $('.dropdown').append(`
+            <div id="match_list">
+                <p>제로</p>
+                <p>제로웨이스트</p>
+                <p>제로페이</p>
+                <p>제로콜라</p>
+                <p>제로플라스틱</p>
+                <p>플라스틱제로</p>
+                <p>재사용</p>
+                <p>용기내</p>
+                <p>분리배출</p>
+                <p>리사이클링</p>
+                <p>재활용</p>
+                <p>업사이클링</p>
+                <p>리필</p>
+                <p>리필스테이션</p>
+                <p>리폼</p>
+            </div>`);
         selTags();
+        // matching
+        var searchText = $('#match_list p').text();
+        $('.search_bar input').keyup(function(){
+            if(searchText.indexOf($('.search_bar input').val()) != -1)
+                console.log('있음');
+            else console.log('없음');
+        });
         // add recent
         $('.search_bar button').click(function(){
             addRecent();
@@ -53,9 +74,11 @@ $(function(){
         if($('.search_bar input').val() === '') return;
         $('.recent').append(`<span class="tag s">${$('.search_bar input').val()}</span>`);
         $('.search_bar input').val('').focus();
-        if($('.recent span').length > 5) {
+        if($('.recent span').length > 5)
             $('.recent span:first-child').remove();
-        }
+        $('.recent .tag').removeClass('sel b');
+        $('.suggest .tag').removeClass('sel');
+        $('.recent .tag').addClass('s');
         selTags();
     };
     function selTags(){
@@ -66,16 +89,16 @@ $(function(){
             $(this).removeClass('hover');
         })
         $('.dropdown .tag').on('click mouseup', function(){
-            var input_txt = $(this).text();
+            var inputText = $(this).text();
             if($(this).parent().hasClass('recent')){
-                $('.search_bar input').val(input_txt);
+                $('.search_bar input').val(inputText);
                 $('.search_bar input').focus();
                 $('.suggest .tag').removeClass('sel');
                 $('.recent .tag').removeClass('sel b');
                 $('.recent .tag').addClass('s');
                 $(this).toggleClass('s');
             } else if($(this).parent().hasClass('suggest')){
-                $('.search_bar input').val(input_txt.substr(1));
+                $('.search_bar input').val(inputText.substr(1));
                 $('.search_bar input').focus();
                 $('.recent .tag').removeClass('sel b');
                 $('.recent .tag').addClass('s');
