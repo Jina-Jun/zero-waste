@@ -1,0 +1,113 @@
+article {
+    margin-top: 40px;
+}
+section:first-of-type article {
+    display: flex;
+}
+section:first-of-type .content {
+    width: 222px;
+    margin-right: 24px;
+}
+.content .wrap_img {
+    margin-bottom: 16px;
+}
+.content .tit {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.content .dscr {
+    font-size: 14px;
+    line-height: 21px;
+}
+/* s: how to */
+.howto .hl {
+    margin-bottom: 0;
+}
+.howto .sl {
+    margin-bottom: 12px;
+}
+.wrap_btn_category {
+    display: flex;
+}
+.btn.circle {
+    width: 140px;
+    height: 140px;
+    border-radius: 70px;
+    position: relative;
+    overflow: hidden;
+    margin-right: 24px;
+}
+.btn.paper {
+    background-image: url(../img/about_waste/bg_btn_1.png);
+    background-size: 200%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.btn.circle span {
+    width: 140px;
+    height: 140px;
+    font-size: 16px;
+    text-align: center;
+    padding: 60px 0;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: #0000000f;
+}
+.btn.circle.sel span {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0px 0px 20px #000000cc;
+}
+.wrap_tit {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+}
+.wrap_howto {
+    margin-top: 80px;
+}
+.howto .wrap_tit img {
+    width: 32px;
+    height: 32px;
+    margin-right: 10px;
+}
+.howto .content {
+    margin-bottom: 30px;
+}
+.howto .tit {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 0;
+}
+.wrap_howto p {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+.wrap_howto ul {
+    list-style-type: disc;
+    line-height: 24px;
+    padding-bottom: 30px;
+}
+.wrap_content {
+    margin-left: 24px;
+}
+.wrap_content div {
+    display: inline-block;
+    margin-right: 24px;
+}
+.step {
+    display: inline-block;
+}
+.step p {
+    font-weight: 400;
+    margin-bottom: 16px;
+}
+.wrap_howto .wrap_img {
+    margin-right: 0;
+    margin-bottom: 30px;
+}
+/* e: how to */
