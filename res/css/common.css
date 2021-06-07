@@ -318,21 +318,6 @@ fieldset + button {
     color: #000;
 }
 /* e: checkup terms */
-/* s: social login/ */
-/* google login */
-
-/* kakao login */
-#login_kakao {
-    background-color: #FEE500;
-    border: 0;
-    color: #000000cc;
-}
-/* naver login */
-#login_naver {
-    background-color: #03c75a;
-    color: #fff;
-}
-/* e: social login/ */
 /* s: header common */
 header {
     min-width: 1440px;
@@ -594,5 +579,50 @@ nav a:hover::before {
 }
 .user_email .i_appr {
     margin-left: 4px;
+}
+.abcRioButton {
+    width: 100% !important;
+    height: 40px !important;
+    border-radius: 20px !important;
+    box-shadow: none !important;
+    border: 1px solid #E0E0E0;
+    box-sizing: border-box;
+    margin: 6px 0 !important;
+}
+.abcRioButtonContents {
+    font-size: 14px !important;
+    line-height: 38px !important;
+    color: #000000;
+}
+.abcRioButtonIcon {
+    display: none;
+}
+#login_kakao {
+    width: 304px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #E0E0E0;
+    background-color: #fff;
+    font-size: 14px;
+    margin: 6px 0;
+    cursor: pointer;
+}
+#naver_id_login {
+    width: 304px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1px solid #E0E0E0;
+    background-color: #fff;
+    margin: 6px 0;
+}
+#naver_id_login img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    opacity: 0;
+}
+#naver_id_login p {
+    font-size: 14px;
+    margin-top: -30px;
 }
 /* e: popup - login, create account */

@@ -35,6 +35,7 @@
                 $(this).toggleClass('b');
                 $(this).toggleClass('g');
             });
+            $('#naver_id_login').append('<p>네이버 로그인</p>');
         });
     </script>
 </head>
@@ -222,9 +223,9 @@
                 </form>
                 <div class="social_login">
                     <p>간편 로그인</p>
-                    <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
-                    <a href="javascript:kakaoLogin();"><button class="btn" id="login_kakao">Kakao</button></a>
-                    <button class="btn" id="naver_id_login">Naver</button>
+                    <div class="g-signin2" data-onsuccess="onSignIn">구글 로그인</div>
+                    <a href="javascript:kakaoLogin();"><button id="login_kakao">카카오 로그인</button></a>
+                    <button id="naver_id_login"></button>
                 </div>
                 <script>
                     window.Kakao.init('6837dc955d4dc50317e861f0e16a429f');
@@ -243,16 +244,6 @@
                             }
                         });
                     }
-                    var naver_id_login = new naver_id_login("C2Opi_EePnLYXHnTDaqI", "http://localhost:5500/res/api/callback.html");
-                    var state = naver_id_login.getUniqState();
-                    naver_id_login.setButton("white", 2,40);
-                    naver_id_login.setDomain(".service.com");
-                    naver_id_login.setState(state);
-                    naver_id_login.setPopup();
-                    naver_id_login.init_naver_id_login();
-                    function test(data){
-                        console.log(data);
-                    }
                     function onSignIn(googleUser){
                         // Useful data for your client-side scripts:
                         var profile = googleUser.getBasicProfile();
@@ -266,6 +257,16 @@
                         // The ID token you need to pass to your backend:
                         var id_token = googleUser.getAuthResponse().id_token;
                         console.log("ID Token: " + id_token);
+                    }
+                    var naver_id_login = new naver_id_login("C2Opi_EePnLYXHnTDaqI", "http://localhost:5500/res/api/callback.html");
+                    var state = naver_id_login.getUniqState();
+                    naver_id_login.setButton("white", 2,40);
+                    naver_id_login.setDomain(".service.com");
+                    naver_id_login.setState(state);
+                    naver_id_login.setPopup();
+                    naver_id_login.init_naver_id_login();
+                    function test(data){
+                        console.log(data);
                     }
                 </script>
                 <!-- google logout -->
