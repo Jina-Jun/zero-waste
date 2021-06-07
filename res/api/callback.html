@@ -1,12 +1,17 @@
-<!doctype html>
 <html lang="ko">
 <head>
 <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
 <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 </head>
 <body>
+<!-- 네이버아이디로로그인 버튼 노출 영역 -->
+<div id="naver_id_login"></div>
+<!-- //네이버아이디로로그인 버튼 노출 영역 -->
+
+
+<!-- 네이버아디디로로그인 초기화 Script -->
 <script type="text/javascript">
-  var naver_id_login = new naver_id_login("JKBuYHi7yANbqvvOuYku", "http://127.0.0.1:5500/api/callback.html");
+	var naver_id_login = new naver_id_login("C2Opi_EePnLYXHnTDaqI", "http://localhost:5500/res/api/callback.html");
   // 접근 토큰 값 출력
   alert(naver_id_login.oauthParams.access_token);
   // 네이버 사용자 프로필 조회
@@ -18,25 +23,23 @@
     document.write("<br>");
     document.write(naver_id_login.getProfileData('age'));
     document.write("<br>");
-    document.write(naver_id_login.getProfileData('name'));
+    document.write(naver_id_login.getProfileData('nickname'));
     document.write("<br>");
     document.write(naver_id_login.getProfileData('gender'));
     document.write("<br>");
     document.write(naver_id_login.getProfileData('id'));
     document.write("<br>");
     document.write(naver_id_login.getProfileData('birthday'));
-    document.write("<br><a href='http://nid.naver.com/nidlogin.logout'>로그아웃</a>");
     var profile = {
         email : naver_id_login.getProfileData('email'),
         age : naver_id_login.getProfileData('age'),
-        name : naver_id_login.getProfileData('name'),
+        nickname : naver_id_login.getProfileData('nickname'),
         gender : naver_id_login.getProfileData('gender'),
         id : naver_id_login.getProfileData('id'),
         birthday : naver_id_login.getProfileData('birthday'),
         tokken : naver_id_login.oauthParams.access_token
     };
     opener.parent.test(profile);
-    opener.document.getElementById("result").innerHTML = naver_id_login.getProfileData('name');
     window.close();
   }
 </script>

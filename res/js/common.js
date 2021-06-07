@@ -44,6 +44,17 @@ $(function(){
     $('.popup .i.close').click(function(){
         $('.modal_login').css('display', 'none');
     });
+    $('.popup input').focus(function(){
+        $(this).parent().addClass('active');
+    });
+    $('.popup input').blur(function(){
+        $(this).parent().removeClass('active');
+    });
+    $('.popup form').submit(function(e){
+        e.preventDefault();
+        checkInputs();
+    })
+    $('input').keyup(checkInputs);
 });
 function inpBlur(){
     $('.placeholder').css('display', 'block');
@@ -81,7 +92,7 @@ function selTags(){
         $(this).removeClass('hover');
     })
     $('.dropdown .tag').on('click mouseup', function(){
-        var inputText = $(this).text();
+        const inputText = $(this).text();
         if($(this).parent().hasClass('recent')){
             $('.search_inp').val(inputText);
             $('.search_inp').focus();
@@ -100,3 +111,35 @@ function selTags(){
         $(this).toggleClass('sel b');
     });
 };
+function checkInputs(){
+    const email = $('#email');
+    const emailVal = $('#email').val().trim();
+
+    if(emailVal === ''){
+        // show error
+        // add error class
+        setErrorFor(email, '이메일 주소를 입력해 주십시오.');
+    } else if(!isEmail(emailVal)){
+        setErrorFor(email, '이메일 형식에 맞게 입력해 주십시오.');
+    } else {
+        setSuccessFor(email);
+    }
+}
+function setErrorFor(input, message){
+    const txtField = input.parent();
+    const msgError = input.next();
+    // add error msg
+    msgError.text(message);
+    // add error class
+    txtField.addClass('error');
+}
+function setSuccessFor(input){
+    const txtField = input.parent();
+    const msgError = input.next();
+    txtField.removeClass('error');
+    msgError.remove();
+}
+function isEmail(email) {
+    var pattern = /[!@#$%^&*()_\+\=\-\[\]\"\']/
+    return  pattern .test(email);
+}
