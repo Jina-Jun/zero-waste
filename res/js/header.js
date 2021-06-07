@@ -27,32 +27,7 @@ $(function(){
                     </div>
                 </div>
             <div class="bg_dropdown"></div>`);
-        $('.dropdown').append(`
-            <div id="match_list">
-                <p>제로</p>
-                <p>제로웨이스트</p>
-                <p>제로페이</p>
-                <p>제로콜라</p>
-                <p>제로플라스틱</p>
-                <p>플라스틱제로</p>
-                <p>재사용</p>
-                <p>용기내</p>
-                <p>분리배출</p>
-                <p>리사이클링</p>
-                <p>재활용</p>
-                <p>업사이클링</p>
-                <p>리필</p>
-                <p>리필스테이션</p>
-                <p>리폼</p>
-            </div>`);
         selTags();
-        // matching
-        var searchText = $('#match_list p').text();
-        $('.search_bar input').keyup(function(){
-            if(searchText.indexOf($('.search_bar input').val()) != -1)
-                console.log('있음');
-            else console.log('없음');
-        });
         // add recent
         $('.search_bar button').click(function(){
             addRecent();
@@ -63,6 +38,13 @@ $(function(){
         });
         // delete all tags
         delAllTags();
+    });
+    var list = [
+        '제로', '제로웨이스트', '제로페이', '제로콜라', '제로플라스틱', '플라스틱', '플라스틱프리',
+        '재사용', '용기내', '분리배출', '리사이클링', '재활용', '업사이클링', '리필', '리필스테이션', '리폼'
+    ]
+    $('.search_bar input').autocomplete({
+        source: list
     });
     function delAllTags(){
         $('.del_all').click(function(){

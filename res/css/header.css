@@ -1,4 +1,7 @@
 /* s: header common */
+header {
+    min-width: 1440px;
+}
 .wrap_header {
     width: 1440px;
     margin: 0 auto;
@@ -184,9 +187,9 @@ nav a:hover::before {
     top: 0;
     z-index: -998;
 }
-#match_list {
+#ui-id-1 {
     margin-top: 26px;
-    width: 100%;
+    width: 631px;
     height: 172px;
     overflow: hidden;
     background-color: #fff;
@@ -195,12 +198,15 @@ nav a:hover::before {
     position: absolute;
     top: 0;
 }
-#match_list p {
+#ui-id-1 li {
     padding: 10px 16px;
     font-size: 16px;
     line-height: 16px;
 }
-#match_list p:hover {
+.ui-autocomplete:hover {
     background-color: #2F80ED26;
+}
+.ui-helper-hidden-accessible {
+    display: none;
 }
 /* e: header active */
