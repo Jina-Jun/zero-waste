@@ -90,6 +90,13 @@ section a:hover {
 /* e: home */
 
 /* s: popup - login, create account */
+.modal_login {
+    display: none;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
 .popup .tit {
     font-size: 24px;
     font-weight: 700;

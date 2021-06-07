@@ -163,13 +163,17 @@
 .btn_map button:first-of-type {
     margin-bottom: 20px;
 }
-.tag_map {
+.tag_map:link, .tag_map:visited {
     padding: 5px 10px 5px 6px;
-    display: inline-flex;
-    align-items: center;
     border: 1px solid #E0E0E0;
     border-radius: 17px;
     background-color: #fff;
+    display: inline-flex;
+    align-items: center;
+    color: #000;
+}
+.tag_map:hover {
+    text-decoration: underline;
 }
 .tag_map .i.store {
     margin-right: 4px;

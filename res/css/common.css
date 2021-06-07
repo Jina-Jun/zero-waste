@@ -123,6 +123,7 @@ footer {
     display: inline-block;
     width: 32px;
     height: 32px;
+    cursor: pointer;
 }
 .i.small {
     width: 24px;
@@ -156,6 +157,9 @@ footer {
 .i.appr {
     background-image: url(../img/icon/checked.svg);
 }
+.i.close {
+    background-image: url(../img/icon/close.svg);
+}
 .i:hover {
     background-color: #f8f8f8;
 }
@@ -172,6 +176,7 @@ footer {
     line-height: 14px;
     border-radius: 20px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 .tag.s {
     background-color: #fff;
@@ -208,6 +213,7 @@ footer {
     font-size: 14px;
     border-radius: 20px;
     border: 0;
+    cursor: pointer;
 }
 .btn.g {
     background-color: #F0F0F0;
@@ -279,6 +285,14 @@ fieldset + button {
     box-sizing: border-box;
     border-radius: 28px;
     background-color: #fff;
+    position: relative;
+}
+.popup .i.close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 27px;
+    right: 26px;
 }
 /* e: popup */
 /* s: checkup terms */
