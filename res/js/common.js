@@ -192,3 +192,6 @@ function clickBtnLoginPass() {
         $('.thumb_dropdown').css('display','block');
     });
 }
+function preparing() {
+    alert('준비 중입니다.');
+}
