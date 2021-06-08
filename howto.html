@@ -20,6 +20,18 @@
     <link rel="stylesheet" href="/res/css/common.css">  
     <link rel="stylesheet" href="/res/css/howto.css">
     <script src="/res/js/common.js"></script>
+    <style>
+        .this_page::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background-color: #2F80ED;
+            border-radius: 1px;
+            position: absolute;
+            top: -2px;
+        }
+    </style>
 </head>
 <body>
     <!-- s: header small -->
@@ -32,7 +44,7 @@
                 <nav>
                     <ul>
                         <li><a href="whatis.html">제로 웨이스트란?</a></li>
-                        <li><a href="howto.html">바르게 버리는 법</a></li>
+                        <li><a href="howto.html" class="this_page">바르게 버리는 법</a></li>
                         <li><a href="tips.html">1DAY 1QUEST</a></li>
                         <li><a href="tips_store.html">STORE MAP</a></li>
                     </ul>
@@ -326,7 +338,7 @@
             <div class="popup">
                 <span class="i close"></span>
                 <p class="tit">로그인</p>
-                <p class="msg_spt">신규 사용자이신가요?<a href="./home_create_account.html">계정 만들기</a></p>
+                <p class="msg_spt">신규 사용자이신가요?<a href="#">계정 만들기</a></p>
                 <form action="#" method="post">
                     <fieldset>
                         <div class="txt_field">
