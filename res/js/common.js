@@ -1,4 +1,5 @@
 $(function(){
+    $('#naver_id_login').append('<p>Naver</p>');
     // search bar - focused
     $('.search_inp').focus(function(){
         $('.placeholder').css('display', 'none');
@@ -43,6 +44,7 @@ $(function(){
     });
     $('.popup .i.close').click(function(){
         $('.modal_login').css('display', 'none');
+        location.reload('.modal_login');
     });
     $('.popup input').focus(function(){
         $(this).parent().addClass('active');
@@ -113,16 +115,21 @@ function selTags(){
 };
 function checkInputs(){
     const email = $('#email');
-    const emailVal = $('#email').val().trim();
-
+    const emailVal = $('#email').val();
     if(emailVal === ''){
         // show error
         // add error class
         setErrorFor(email, '이메일 주소를 입력해 주십시오.');
     } else if(!isEmail(emailVal)){
         setErrorFor(email, '이메일 형식에 맞게 입력해 주십시오.');
+        $('form button').addClass('g');
+        $('form button').removeClass('b');  
+        $('form button a').attr('href','#');
     } else {
         setSuccessFor(email);
+        $('form button').removeClass('g');
+        $('form button').addClass('b');
+        $('form button a').attr('href','javascript:clickBtnLoginEmail()');
     }
 }
 function setErrorFor(input, message){
@@ -142,4 +149,46 @@ function setSuccessFor(input){
 function isEmail(email) {
     var pattern = /[!@#$%^&*()_\+\=\-\[\]\"\']/
     return  pattern .test(email);
+}
+function clickBtnLoginEmail() {
+    const emailVal = $('#email').val();
+    const userEmail = emailVal;
+    $('.msg_spt').remove();
+    $('form').prev().html(`<p class="tit">로그인</p>
+    <div class="appr_email">
+        <p class="label">이메일 주소</p>
+        <p class="user_email" style="font-size:16px;">${userEmail}<span class="i small appr"></span></p>
+    </div>`);
+    $('form').html(`
+    <fieldset>
+        <div class="txt_field">
+            <label for="pass">암호</label>
+            <input type="password" name="pass" id="pass">
+            <p class="msg_error"></p>
+        </div>
+    </fieldset>
+    <button class="btn g r"><a href="#">계속</a></button>`);
+    $('input').keyup(function(){
+        const pass = $('#pass');
+        const passVal = $('#pass').val().trim();
+        if(passVal === ''){
+            setErrorFor(pass, '암호를 입력해 주십시오.');
+            $('form button a').attr('href','#');
+        } else {
+            setSuccessFor(pass);
+            $('form button').removeClass('g');
+            $('form button').addClass('b');
+            $('form button a').attr('href','javascript:clickBtnLoginPass()');
+        }
+    });
+    console.log(userEmail);
+}
+function clickBtnLoginPass() {
+    $('.modal_login').css('display', 'none');
+    $('.btn_login').remove();
+    $('.wrap_thumb_user').css('display', 'block');
+    $('.wrap_thumb_user').prepend(`<button class="thumb_user">U</button>`);
+    $('.thumb_user').click(function(){
+        $('.thumb_dropdown').css('display','block');
+    });
 }
