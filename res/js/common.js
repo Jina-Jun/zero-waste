@@ -20,23 +20,25 @@ $(function(){
                 inpBlur();
             }
         });
+        // delete all tags
+        $('.del_all').click(function(){
+            $('.recent .tag').remove();
+            $('.search_inp').focus();
+        });
+        // header영역 클릭하면 search bar focus유지
         $('header').click(function(){
             $('.search_inp').focus();
         });
-        // delete all tags
-        delAllTags();
+        // search bar - unfocused
+        $('section').click(searchInpBlur);
     });
-    // searh matching
+    // searh bar - matching
     var list = [
         '제로', '제로웨이스트', '제로페이', '제로콜라', '제로플라스틱', '플라스틱', '플라스틱프리',
         '재사용', '용기내', '분리배출', '리사이클링', '재활용', '업사이클링', '리필', '리필스테이션', '리폼'
     ]
     $('.search_inp').autocomplete({
         source: list
-    });
-    // search bar - unfocused
-    $('section').click(function(){
-        inpBlur();
     });
     // modal login
     $('.btn_login').click(function(){
@@ -52,29 +54,9 @@ $(function(){
     $('input').blur(function(){
         $(this).parent().removeClass('active');
     });
-    // $('form').submit(function(e){
-    //     e.preventDefault();
-    //     checkEmail();
-    // })
     $('input').keyup(checkEmail);
 });
-function inpBlur(){
-    $('.placeholder').css('display', 'block');
-        $('header').removeClass('active');
-        $('input').val('');
-        $('#ui-id-1, .dropdown').css('display', 'none');
-        $('.search_inp').blur();
-        $('.recent .tag').removeClass('sel b');
-        $('.suggest .tag').removeClass('sel');
-        $('.recent .tag').addClass('s');
-        return;
-}
-function delAllTags(){
-    $('.del_all').click(function(){
-        $('.recent .tag').remove();
-        $('.search_inp').focus();
-    });
-}
+/* s: header search bar */
 function addRecent(){
     if($('.search_inp').val() === '') return;
     $('.recent').append(`<span class="tag s">${$('.search_inp').val()}</span>`);
@@ -113,6 +95,17 @@ function selTags(){
         $(this).toggleClass('sel b');
     });
 };
+function searchInpBlur(){
+    $('.placeholder').css('display', 'block');
+    $('header').removeClass('active');
+    $('.search_inp').val('');
+    $('.dropdown').css('display', 'none');
+    $('.recent .tag').removeClass('sel b');
+    $('.suggest .tag').removeClass('sel');
+    $('.recent .tag').addClass('s');
+}
+/* e: header search bar */
+/* s: modal login - first */
 function checkEmail(){
     const email = $('#email');
     const emailVal = $('#email').val();
@@ -141,9 +134,13 @@ function checkEmail(){
                 </div>
             </fieldset>
             <button class="btn g r">계속</button>`);
-            $('input').keyup(function(){
-                checkPass();
+            $('input').focus(function(){
+                $(this).parent().addClass('active');
             });
+            $('input').blur(function(){
+                $(this).parent().removeClass('active');
+            });
+            $('input').keyup(checkPass);
         });
     }
 }
@@ -189,6 +186,168 @@ function clickBtnCheckPass() {
         $('.thumb_dropdown').css('display','block');
     });
 }
+/* e: modal login - first */
+/* s: modal create account */
+function modalCreateAccount(){
+    $('.popup').html(`<span class="i close"></span>
+    <p class="tit">계정 만들기</p>
+    <p class="msg_spt">이미 계정이 있으십니까?<a href="javascript:modalLogin()">로그인</a></p>
+    <form action="#" method="post">
+        <fieldset>
+            <div class="txt_field">
+                <label for="email">이메일 주소</label>
+                <input type="email" name="email" id="email">
+                <p class="msg_error"></p>
+            </div>
+            <div class="txt_field">
+                <label for="user_name">이름</label>
+                <input type="text" name="user_name" id="user_name">
+                <p class="msg_error"></p>
+            </div>
+            <div class="txt_field">
+                <label for="pass">암호</label>
+                <input type="password" name="pass" id="pass">
+                <p class="msg_error"></p>
+            </div>
+            <div class="txt_field">
+                <label for="chk_pass">암호 확인</label>
+                <input type="password" name="chk_pass" id="chk_pass">
+                <p class="msg_error"></p>
+            </div>
+        </fieldset>
+        <div class="chkUp_terms">
+            <div class="terms_item">
+                <input type="checkbox" name="terms1" id="terms1">
+                <label for="terms1">(선택) 이메일 수신에 동의합니다.</label>
+            </div>
+            <div class="terms_item">
+                <input type="checkbox" name="terms2" id="terms2">
+                <label for="terms2">(필수) <a href="">사용 약관</a> 및 <a href="">개인정보보호 정책</a>을 읽었으며 이에 동의합니다.</label>
+            </div>
+        </div>
+        <button class="btn g f">계정 만들기</button>
+    </form>`);
+    $('.i.close').click(function(){
+        $('.modal_login').css('display', 'none');
+        location.reload('.modal_login');
+    });
+    $('input').focus(function(){
+        $(this).parent().addClass('active');
+    });
+    $('input').blur(function(){
+        $(this).parent().removeClass('active');
+    });
+    $('form').submit(function(e){
+        e.preventDefault();
+        checkInputs();
+        if($('#terms2').is(':checked') == false){
+            alert("필수 항목에 동의해 주십시오.");
+            return false;
+        }
+    })
+    $('input').keyup(checkInputs);
+}
+function checkInputs(){
+    const email = $('#email');
+    const userName = $('#user_name');
+    const pass = $('#pass');
+    const chkPass = $('#chk_pass');
+    const emailVal = $('#email').val().trim();
+    const userNameVal = $('#user_name').val().trim();
+    const passVal = $('#pass').val().trim();
+    const chkPassVal = $('#chk_pass').val().trim();
+
+    if(emailVal === ''){
+        // show error
+        // add error class
+        setErrorFor(email, '이메일 주소를 입력해 주십시오.');
+    } else if(!isEmail(emailVal)){
+        setErrorFor(email, '이메일 형식에 맞게 입력해 주십시오.');
+    } else {
+        setSuccessFor(email);
+    }
+    if(userNameVal === ''){
+        setErrorFor(userName, '이름을 입력해 주십시오.');
+    } else {
+        setSuccessFor(userName);
+    }
+    if(passVal === ''){
+        setErrorFor(pass, '암호를 입력해 주십시오.');
+    } else {
+        setSuccessFor(pass);
+    }
+    if(chkPassVal === ''){
+        setErrorFor(chkPass, '암호를 확인해 주십시오.');
+    } else if(passVal !== chkPassVal) {
+        setErrorFor(chkPass, '암호가 일치하지 않습니다.');
+    } else {
+        setSuccessFor(chkPass);
+    }
+}
+function setErrorFor(input, message){
+    const txtField = input.parent();
+    const msgError = input.next();
+    // add error msg
+    msgError.text(message);
+    // add error class
+    txtField.addClass('error');
+}
+function setSuccessFor(input){
+    const txtField = input.parent();
+    const msgError = input.next();
+    txtField.removeClass('error');
+    msgError.remove();
+}
+function isEmail(email) {
+    var pattern = /[!@#$%^&*()_\+\=\-\[\]\"\']/
+    return  pattern .test(email);
+}
+/* e: modal create account */
+/* s: modal login */
+function modalLogin(){
+    $('.popup').html(`<span class="i close"></span>
+    <p class="tit">로그인</p>   
+    <p class="msg_spt">신규 사용자이신가요?<a href="javascript:modalCreateAccount()">계정 만들기</a></p>
+    <form action="#" method="post">
+        <fieldset>
+            <div class="txt_field">
+                <label for="email">이메일 주소</label>
+                <input type="email" name="email" id="email">
+                <p class="msg_error"></p>
+            </div>
+        </fieldset>
+        <button class="btn g r">계속</button>
+    </form>
+    <div class="social_login">
+        <p>간편 로그인</p>
+        <div class="btn w">
+            <img src="/res/img/icon/google.png" alt="">
+            <p>Google</p>
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+        </div>
+        <a href="javascript:kakaoLogin();"><button id="login_kakao">Kakao</button></a>
+        <div class="btn w">
+            <img src="/res/img/icon/naver.png" alt="">
+            <button id="naver_id_login"></button>
+        </div>
+    </div>
+    <div class="privacy">
+        <a href="#">개인정보처리방침</a>
+    </div>`);
+    $('#naver_id_login').append('<p>Naver</p>');
+    $('.i.close').click(function(){
+        $('.modal_login').css('display', 'none');
+        location.reload('.modal_login');
+    });
+    $('input').focus(function(){
+        $(this).parent().addClass('active');
+    });
+    $('input').blur(function(){
+        $(this).parent().removeClass('active');
+    });
+    $('input').keyup(checkEmail);
+}
+/* e: modal login */
 function preparing() {
     alert('준비 중입니다.');
 }
