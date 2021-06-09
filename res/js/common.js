@@ -52,10 +52,10 @@ $(function(){
     $('input').blur(function(){
         $(this).parent().removeClass('active');
     });
-    $('form').submit(function(e){
-        e.preventDefault();
-        checkEmail();
-    })
+    // $('form').submit(function(e){
+    //     e.preventDefault();
+    //     checkEmail();
+    // })
     $('input').keyup(checkEmail);
 });
 function inpBlur(){
@@ -128,7 +128,37 @@ function checkEmail(){
         $('form button').addClass('b');
         $('form').submit(function(e){
             e.preventDefault();
-            clickBtnCheckEmail();
+            $('form').prev().html(`<div class="appr_email">
+                <p class="label">이메일 주소</p>
+                <p class="user_email" style="font-size:16px;">${emailVal}<span class="i small appr"></span></p>
+            </div>`);
+            $('form').html(`
+            <fieldset>
+                <div class="txt_field">
+                    <label for="pass">암호</label>
+                    <input type="password" name="pass" id="pass">
+                    <p class="msg_error"></p>
+                </div>
+            </fieldset>
+            <button class="btn g r">계속</button>`);
+            $('input').keyup(function(){
+                checkPass();
+            });
+        });
+    }
+}
+function checkPass(){
+    const pass = $('#pass');
+    const passVal = $('#pass').val().trim();
+    if(passVal === ''){
+        setErrorFor(pass, '암호를 입력해 주십시오.');
+    } else {
+        setSuccessFor(pass);
+        $('form button').removeClass('g');
+        $('form button').addClass('b');
+        $('form').submit(function(e){
+            e.preventDefault();
+            clickBtnCheckPass();
         });
     }
 }
@@ -149,38 +179,6 @@ function setSuccessFor(input){
 function isEmail(email) {
     var pattern = /[!@#$%^&*()_\+\=\-\[\]\"\']/
     return  pattern .test(email);
-}
-function clickBtnCheckEmail() {
-    var emailVal = $('#email').val();
-    console.log(emailVal);
-    $('form').prev().html(`<div class="appr_email">
-        <p class="label">이메일 주소</p>
-        <p class="user_email" style="font-size:16px;">${emailVal}<span class="i small appr"></span></p>
-    </div>`);
-    $('form').html(`
-    <fieldset>
-        <div class="txt_field">
-            <label for="pass">암호</label>
-            <input type="password" name="pass" id="pass">
-            <p class="msg_error"></p>
-        </div>
-    </fieldset>
-    <button class="btn g r">계속</button>`);
-    $('input').keyup(function(){
-        const pass = $('#pass');
-        const passVal = $('#pass').val().trim();
-        if(passVal === ''){
-            setErrorFor(pass, '암호를 입력해 주십시오.');
-        } else {
-            setSuccessFor(pass);
-            $('form button').removeClass('g');
-            $('form button').addClass('b');
-            $('form').submit(function(e){
-                e.preventDefault();
-                clickBtnCheckPass();
-            });
-        }
-    });
 }
 function clickBtnCheckPass() {
     $('.modal_login').css('display', 'none');
