@@ -13,6 +13,7 @@ section:first-of-type .content {
 }
 .content .wrap_img {
     margin-bottom: 16px;
+    position: relative;
 }
 .content .tit {
     font-size: 16px;
@@ -41,6 +42,9 @@ section:first-of-type .content {
     overflow: hidden;
     margin-right: 24px;
 }
+.btn.circle:last-of-type {
+    margin-right: 0;
+}
 .btn.paper {
     background-image: url(../img/whatis/bg_btn_1.png);
     background-size: 200%;
@@ -48,8 +52,8 @@ section:first-of-type .content {
     background-position: center;
 }
 .btn.circle span {
-    width: 140px;
-    height: 140px;
+    width: 100%;
+    height: 100%;
     font-size: 16px;
     text-align: center;
     padding: 60px 0;
@@ -133,6 +137,12 @@ section:first-of-type .content {
 .tip.warning > p {
     color: #EB5757;
 }
+.tip.warning .wrap_content p {
+    font-weight: 400;
+    margin-bottom: 16px;
+    color: #EB5757;
+    font-style: italic;
+}
 .tip.help > p {
     color: #219653;
 }
@@ -146,9 +156,19 @@ section:first-of-type .content {
     width: 100%;
     margin-bottom: 16px;
 }
+.tip.help .wrap_content .wrap_img img {
+    width: 100%;
+    height: auto;
+    margin-top: -30px;
+}
 .wrap_img + p {
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 0;
+}
+.donot {
+    width: 60px;
+    position: absolute;
+    left: calc((222px - 60px) / 2);
 }
 /* e: how to */
