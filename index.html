@@ -217,7 +217,7 @@
                 <span class="i close"></span>
                 <p class="tit">로그인</p>   
                 <p class="msg_spt">신규 사용자이신가요?<a href="#">계정 만들기</a></p>
-                <form action="#" method="post">
+                <form method="get">
                     <fieldset>
                         <div class="txt_field">
                             <label for="email">이메일 주소</label>
@@ -225,7 +225,7 @@
                             <p class="msg_error"></p>
                         </div>
                     </fieldset>
-                    <button class="btn g r"><a href="#">계속</a></button>
+                    <button class="btn g r">계속</button>
                 </form>
                 <div class="social_login">
                     <p>간편 로그인</p>
@@ -284,10 +284,6 @@
                         console.log(data);
                         clickBtnLoginPass();
                     }
-                </script>
-                <!-- google logout -->
-                <!-- <button type="button" onclick="signOut()">sign out</button> -->
-                <script>
                     function signOut() {
                         gapi.auth2.getAuthInstance().disconnect();
                         confirm('로그아웃 하시겠습니까?');

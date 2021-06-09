@@ -220,6 +220,7 @@ footer {
 }
 .btn.b {
     background-color: #2F80ED;
+    color: #fff;
 }
 .btn.w {
     background-color: #fff;
@@ -236,9 +237,6 @@ fieldset + button {
 }
 .btn a:link, .btn a:visited {
     color: #000;
-}
-.btn.b a:link, .btn.b a:visited {
-    color: #fff;
 }
 /* e: button */
 /* s: text field */
@@ -273,30 +271,6 @@ fieldset + button {
     color: #000;
 }
 /* e: text field */
-/* s: popup */
-.overlay {
-    height: 100vh;
-    background-color: #00000040;
-    padding: 120px 0;
-    box-sizing: border-box;
-}
-.popup {
-    width: 468px;
-    margin: 0 auto;
-    padding: 50px 82px 60px;
-    box-sizing: border-box;
-    border-radius: 28px;
-    background-color: #fff;
-    position: relative;
-}
-.popup .i.close {
-    width: 32px;
-    height: 32px;
-    position: absolute;
-    top: 27px;
-    right: 26px;
-}
-/* e: popup */
 /* s: checkup terms */
 .chkUp_terms {
     margin-top: 20px;
@@ -572,10 +546,33 @@ nav a:hover::before {
     display: none;
 }
 /* e: header active */
+/* s: popup */
+.popup {
+    width: 468px;
+    margin: 0 auto;
+    padding: 50px 82px 60px;
+    box-sizing: border-box;
+    border-radius: 28px;
+    background-color: #fff;
+    position: relative;
+}
+.popup .i.close {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    top: 27px;
+    right: 26px;
+}
+/* e: popup */
 /* s: popup - login, create account */
 .modal_login {
     display: none;
+    background-color: #00000040;
+    padding: 120px 0;
+    box-sizing: border-box;
+    width: 100%;
     min-width: 1440px;
+    height: 100vh;
     position: fixed;
     top: 0;
     left: 0;
