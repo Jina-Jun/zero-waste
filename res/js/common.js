@@ -335,6 +335,24 @@ function modalLogin(){
         <a href="#">개인정보처리방침</a>
     </div>`);
     $('#naver_id_login').append('<p>Naver</p>');
+    $('.g-signin2').css({'width': '304px', 'height': '40px'});
+    $('.g-signin2').click(function onSignIn(googleUser){
+        // Useful data for your client-side scripts:
+        var profile = googleUser.getBasicProfile();
+        console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+        console.log('Full Name: ' + profile.getName());
+        console.log('Given Name: ' + profile.getGivenName());
+        console.log('Family Name: ' + profile.getFamilyName());
+        console.log("Image URL: " + profile.getImageUrl());
+        console.log("Email: " + profile.getEmail());
+
+        // The ID token you need to pass to your backend:
+        var id_token = googleUser.getAuthResponse().id_token;
+        console.log("ID Token: " + id_token);
+        clickBtnCheckPass();
+    });
+    $('#naver_id_login').prepend(`<a href="https://nid.naver.com/oauth2.0/authorize?response_type=token&client_id=C2Opi_EePnLYXHnTDaqI&redirect_uri=http%3A%2F%2Frlanij.dothome.co.kr%2Fres%2Fapi%2Fcallback.html&state=d54d12db-04a1-44c0-a7e9-e44c329a90a8" onclick="window.open(this.href, 'naverloginpop', 'titlebar=1, resizable=1, scrollbars=yes, width=600, height=550'); return false" id="naver_id_login_anchor">
+    <img src="http://static.nid.naver.com/oauth/small_w_in.PNG" border="0" title="네이버 아이디로 로그인" width="104.96px" height="40"></a>`)
     $('.i.close').click(function(){
         $('.modal_login').css('display', 'none');
         location.reload('.modal_login');
