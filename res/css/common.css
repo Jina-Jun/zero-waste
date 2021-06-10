@@ -53,6 +53,7 @@ b {
 /* s: section */
 section {
     padding: 80px 240px;
+    position: relative;
 }
 section:last-of-type {
     padding-bottom: 160px;
@@ -133,6 +134,9 @@ footer {
 .i.save {
     background-image: url(../img/icon/save.svg);
 }
+.i.share {
+    background-image: url(../img/icon/share.svg);
+}
 .i.view_l {
     background-image: url(../img/icon/list.svg);
 }
@@ -159,6 +163,9 @@ footer {
 }
 .i.close {
     background-image: url(../img/icon/close.svg);
+}
+.i.arrow_l {
+    background-image: url(../img/icon/arrow_left.svg);
 }
 .i:hover {
     background-color: #f8f8f8;

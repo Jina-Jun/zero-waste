@@ -192,3 +192,30 @@
     font-size: 12px;
 }
 /* e: 1d1q - store */
+/* s: 1d1q - details */
+.back_to_list {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 84px;
+    font-size: 14px;
+}
+.back_to_list .i {
+    margin-right: 10px;
+}
+.tit_detail p {
+    width: 600px;
+    margin: 0 auto;
+}
+.tit_detail .hl {
+    margin-bottom: 12px;
+}
+.tit_detail .icons {
+    position: absolute;
+    top: 80px;
+    right: 240px;
+}
+.tit_detail .i {
+    margin-left: 50px;
+}
+/* e: 1d1q - details */
