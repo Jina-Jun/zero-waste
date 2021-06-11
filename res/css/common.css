@@ -34,6 +34,14 @@ b {
     width: 222px;
     height: 180px;
 }
+.wrap_img.large {
+    width: 100%;
+    height: 400px;
+}
+.wrap_img.large img {
+    width: 100%;
+    height: auto;
+}
 .wrap_img img {
     height: 100%;
 }
@@ -116,7 +124,7 @@ footer {
     font-size: 0;
 }
 .i_sns a {
-    margin-left: 12px;
+    margin-left: 24px;
 }
 /* e: footer */
 /* s: icon */
