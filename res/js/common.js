@@ -251,7 +251,7 @@ function modalCreateAccount(){
 function clickBtnCreateAccount(){
     const userNameVal = $('#user_name').val().trim();
     $('.popup').html(`<span class="i close"></span>
-    <p class="tit">안녕하세요.<br>${userNameVal}님</p><p class='msg'>로그인 하시겠습니까?</p>
+    <p class="tit">안녕하세요. ${userNameVal}님</p><p class='msg'>로그인 하시겠습니까?</p>
     <button id="login" class="btn b f">로그인</button><button id="noThanks" class="btn g f">다음에 할래요</button>`
     );
     $('.btn').css({'margin': '6px 0', 'width': '140px'});
