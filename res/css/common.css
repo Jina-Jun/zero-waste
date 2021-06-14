@@ -598,10 +598,10 @@ nav a:hover::before {
     font-weight: 700;
     margin-bottom: 40px;
 }
-.msg_spt {
+.msg {
     margin-bottom: 40px;
 }
-.msg_spt a:link, .msg_spt a:visited {
+.msg a:link, .msg a:visited {
     text-decoration: underline;
     color: #2F80ED;
     margin-left: 10px;
@@ -610,7 +610,7 @@ nav a:hover::before {
     margin: 60px 0;
 }
 .social_login p {
-    margin-bottom: 14px;
+    margin-bottom: 20px;
 }
 .popup .privacy {
     text-align: center;

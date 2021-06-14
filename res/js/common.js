@@ -191,7 +191,7 @@ function clickBtnCheckPass() {
 function modalCreateAccount(){
     $('.popup').html(`<span class="i close"></span>
     <p class="tit">계정 만들기</p>
-    <p class="msg_spt">이미 계정이 있으십니까?<a href="javascript:modalLogin()">로그인</a></p>
+    <p class="msg">이미 계정이 있으십니까?<a href="javascript:modalLogin()">로그인</a></p>
     <form action="#" method="post">
         <fieldset>
             <div class="txt_field">
@@ -244,8 +244,28 @@ function modalCreateAccount(){
             alert("필수 항목에 동의해 주십시오.");
             return false;
         }
+        clickBtnCreateAccount();
     })
     $('input').keyup(checkInputs);
+}
+function clickBtnCreateAccount(){
+    const userNameVal = $('#user_name').val().trim();
+    $('.popup').html(`<span class="i close"></span>
+    <p class="tit">안녕하세요.<br>${userNameVal}님</p><p class='msg'>로그인 하시겠습니까?</p>
+    <button id="login" class="btn b f">로그인</button><button id="noThanks" class="btn g f">다음에 할래요</button>`
+    );
+    $('.btn').css({'margin': '6px 0', 'width': '140px'});
+    $('#login').css('margin-right', '24px');
+    $('.msg').css('margin-bottom', '14px');
+    $('.i.close').click(function(){
+        $('.modal_login').css('display', 'none');
+        location.reload('.modal_login');
+    });
+    $('#login').click(clickBtnCheckPass);
+    $('#noThanks').click(function(){
+        $('.modal_login').css('display', 'none');
+        location.reload('.modal_login');
+    });
 }
 function checkInputs(){
     const email = $('#email');
@@ -307,7 +327,7 @@ function isEmail(email) {
 function modalLogin(){
     $('.popup').html(`<span class="i close"></span>
     <p class="tit">로그인</p>   
-    <p class="msg_spt">신규 사용자이신가요?<a href="javascript:modalCreateAccount()">계정 만들기</a></p>
+    <p class="msg">신규 사용자이신가요?<a href="javascript:modalCreateAccount()">계정 만들기</a></p>
     <form action="#" method="post">
         <fieldset>
             <div class="txt_field">
