@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- browser tab icon -->
+    <link rel="icon" href="#">
+    <title>1D1Q</title>
+    <!-- google login -->
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="951512135887-qs5bna33cl8u7hn1b2dbu42eb9md54vv.apps.googleusercontent.com">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <!-- kakao login -->
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <!-- naver login -->
+    <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+    <script src="/res/lib/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="/res/css/common.css">   
+    <link rel="stylesheet" href="/res/css/tips.css">
+    <script src="/res/js/common.js"></script>
+    <script>
+        $(function(){
+            // toggle - viewer
+            $('.show.grid, .wrap_contents.list').hide();
+            $('.viewer').click(function(){
+                $('.show').toggle();
+                $('.wrap_contents').toggle();
+            });
+            // hashtag
+            $('.tag').click(function(){
+                $(this).toggleClass('b');
+                $(this).toggleClass('g');
+            });
+            // save/saved
+            $('.i.save').click(function(){
+                if($(this).hasClass('save')){
+                    $(this).css('background-image', 'url("./res/img/icon/saved.svg")');
+                    $(this).removeClass('save');
+                    $(this).addClass('saved');
+                } else if(!$(this).hasClass('save')){
+                    $(this).css('background-image', 'url("./res/img/icon/save.svg")');
+                    $(this).removeClass('saved');
+                    $(this).addClass('save');
+                }
+            });
+        });
+    </script>
+    <style>
+        .this_page::before {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 2px;
+            background-color: #2F80ED;
+            border-radius: 1px;
+            position: absolute;
+            top: -2px;
+        }
+        article {
+            position: relative;
+        }
+        .tags_mypage {
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 384px;
+        }
+        .tags_mypage .tag {
+            margin-bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- s: header small -->
+    <header class="header small">
+        <!-- s: wrap header -->
+        <div class="wrap_header">
+            <div class="wrap_nav">
+                <h1 class="logo"><a href="index.html">1D1Q</a></h1>
+                <!-- s: nav -->
+                <nav>
+                    <ul>
+                        <li><a href="whatis.html">제로 웨이스트란?</a></li>
+                        <li><a href="howto.html">바르게 버리는 법</a></li>
+                        <li><a href="tips.html" class="this_page">1DAY 1QUEST</a></li>
+                        <li><a href="tips_store.html">STORE MAP</a></li>
+                    </ul>
+                </nav>
+                <!-- e: nav -->
+                <button class="btn_login">로그인</button>
+            </div>
+            <div class="wrap_thumb_user">
+                <div class="thumb_dropdown">
+                    <ul>
+                        <li><a onclick="signOut()">로그아웃</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- e: wrap header -->
+            <!-- s: search bar -->
+            <div class="search_bar">
+                <span class="placeholder">제로웨이스트를 검색해보세요</span>
+                <input class="search_inp" type="text">
+                <button>search</button>
+                <div class="dropdown">
+                    <div class="wrap_item_dropdown">
+                        <div class="item">
+                            <p class="del_all"> 모두 지우기</p>
+                            <p class="tit">최근 검색어</p>
+                            <div class="tags recent">
+                                <span class="tag s">제로웨이스트</span>
+                                <span class="tag s">플라스틱</span>
+                                <span class="tag s">분리배출</span>
+                                <span class="tag s">누깍</span>
+                                <span class="tag s">설거지솝</span>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <p class="tit">추천 검색어</p>
+                            <div class="tags suggest">
+                                <span class="tag b">#용기내</span>
+                                <span class="tag b">#재사용</span>
+                                <span class="tag b">#플라스틱제로</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg_dropdown"></div>
+                </div>
+            </div>
+            <!-- e: search bar -->
+        </div>
+        <!-- e: wrap header -->
+        <div class="wrap_bg_header">
+            <div class="gr_header"></div>
+            <div class="bg_header"></div>
+        </div>
+    </header>
+    <!-- e: header small -->
+    <div class="container">
+        <!-- s: section -->
+        <section>
+            <p class="hl">저장 목록</p>
+            <article>
+                <div class="option">
+                    <div class="viewer">
+                        <div class="show list">
+                            <span class="i view_l"></span>
+                            <span>리스트로 보기</span>
+                        </div>
+                        <div class="show grid">
+                            <span class="i view_g"></span>
+                            <span>격자로 보기</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tags_mypage">
+                    <span class="tag bk">실천 팁</span>
+                    <span class="tag w">스토어</span>
+                </div>
+                <div class="wrap_contents grid">
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_1.jpeg" alt="비누열매, 소프넛 이미지">
+                        </div>
+                        <p class="tit">비누열매, 소프넛에 대해 알아볼까요?</p>
+                        <p class="dscr">소프넛은 천연계면활성제인 '사포닌'이 세정의 핵심성분입니다. 소프넛 열매에 있는 크고 단단한 씨앗을 제거하고 나면 과피가 남습니다. 이 소프넛 과피에 든 사포닌이 물을 만나 용출되어 나오면서 세정력이 생기는 것입니다.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_2.jpeg" alt="리필 스테이션 이미지">
+                        </div>
+                        <p class="tit">서울에 위치한 리필 스테이션을 소개합니다.</p>
+                        <p class="dscr">환경 보호의 중요성이 점차 강조되는 요즘, 제로웨이스트를 실천하는 곳과 개인이 늘어나고 있습니다. 국내 제로웨이스트 숍과 리필스테이션은 약 90곳 정도로 점차 늘어나고 있는데요. 그 중 서울지역의 제로웨이스트 숍 12곳을 소개합니다. 전부를 바꾸는 것은 불가능해도 쓰레기 없는 삶을 고려 중이라면 제로웨이스트를 실천 할 수 있는 곳을 찾아보고 방문해 보는 것은 어떨까요?</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_3.jpeg" alt="번거로운 포장 법, 용기내 챌린지 이미지">
+                        </div>
+                        <p class="tit">쓰레기는 빼기, 과정은 더하기 - 번거로운 포장 법</p>
+                        <p class="dscr">배우 류준열 씨의 개인 SNS에는 그가 직접 다회용기를 들고 대형마트에서 식품을 구매하는 사진이 올라왔었죠? 그 후에 ‘용기내 챌린지’에 대한 사람들의 관심이 커졌습니다. ‘용기내 챌린지’는 제로웨이스트(zero waste, 쓰레기 최대한 줄이기 운동)의 일환으로 일회용품 대신 다회용기를 사용하자는 운동입니다. 지난 1년간 코로나19 바이러스로 인해 언택트 문화가 확산되면서 음식배달 서비스 이용자가 급증했는데요. 그에 덩달아 플라스틱 혹은 종이로 만들어진 포장 용기의 사용량도 많아졌다고 합니다.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_4.jpeg" alt="작은 플라스틱 이미지">
+                        </div>
+                        <p class="tit">작은 플라스틱을 모아서 플라스틱 방앗간에 보내주세요.</p>
+                        <p class="dscr">매일 사용하는 원데이렌즈, 이렇게 작은 플라스틱들은 분리 배출하여도 재활용되지 않는다는 사실 알고 계셨나요? '야, 너도 치약짜개 될 수 있어!' 이제부터 작은 플라스틱을 모아주세요.병뚜껑, 일회용렌즈케이스처럼 재활용 되지 않는 작은 플라스틱을 모아서 플라스틱 방앗간에 보내면 치약짜개를 만들어 줍니다. 아예 안 쓸 수 없다면 사용량을 줄이고, 바르게 버리는 방법에 대해 함께 배워보아요.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_5.jpeg" alt="업사이클링 제품 이미지">
+                        </div>
+                        <p class="tit">업사이클링, 새활용 제품을 판매하는 스토어에 방문해 보세요.</p>
+                        <p class="dscr">환경을 위한 폐기물 처리 방법으로는 재활용이 일반적이지만, 재활용 과정에서 발생하는 폐기물의 물리적·화학적 변형은 자원 순환의 걸림돌이 되기도 합니다. 이 같은 재활용의 한계를 보완하기 위해 등장한 것이 바로 ‘업사이클’(upcycle), 우리말로는 ‘새활용’입니다. 새활용은 버려지는 자원에 디자인을 더하는 등 폐기물의 새로운 가치를 만들어내는 방법인데요. 최근 환경 문제에 대한 대중의 관심이 높아지고 있는 만큼, 새활용이 친환경적인 움직임으로 주목받고 있습니다.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_6.jpeg" alt="재래시장 이미지">
+                        </div>
+                        <p class="tit">주말엔 장바구니 챙겨서 재래시장으로 장보러 가요.</p>
+                        <p class="dscr">포장없는 장보기를 하러 갈 때엔 챙길 것이 많습니다. 꽤나 번거로우며 귀찮은 일이 아닐 수 없죠. 흙이 묻어 있는 채소를 담을 재사용 비닐주머니, 흙 없는 채소를 담을 천 주머니, 구입 목록에 따라 필요한 빈 용기, 장바구니를 모두 들고 집을 나서야합니다.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_7.jpeg" alt="플로깅 이미지">
+                        </div>
+                        <p class="tit">지구를 구하는 여정, 플로깅 크루가 되어주세요.</p>
+                        <p class="dscr">길거리에 버려진 담배꽁초, 쓰레기들이 미세플라스틱과 유해물질이 되어 결국 우리에게 돌아옵니다.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_8.jpeg" alt="DIY Beauty Recipes 이미지">
+                        </div>
+                        <p class="tit">To Buy or DIY? 간단한 친환경 뷰티 레시피를 확인하세요.</p>
+                        <p class="dscr">One of the things that I noticed when I first transitioned to a Zero Waste lifestyle (which side note, how was that nearly a decade ago now?? Time flies!!) was how much waste comes along with conventional beauty and personal care products. Between the tubes, bottles, sprays, aerosol cans, and other packaging, beauty routines can be pretty ugly for the planet. That’s why I stopped buying and started making a lot of my own products. And before you think, “I don’t have the time for that!”, trust me, doing it yourself can be quick and easy. You can make large quantities at a time, control the ingredients you are putting in and on your body, save money, AND save lots and lotsAND LOTS of unnecessary packaging waste. Not to mention, it’s also fun!</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                    <div class="content grid">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_9.jpeg" alt="텀블러 이미지">
+                        </div>
+                        <p class="tit">텀블러를 더 환경적으로 사용하는 법</p>
+                        <p class="dscr">텀블러는 대표적인 ‘에코템’입니다. 일회용컵 사용을 줄일 수 있기 때문에 잘 사용하면 종이컵이나 플라스틱컵 사용을 크게 줄일 수 있습니다. 하지만 텀블러가 언제나, 그러니까 항상 환경적일까요? 텀블러를 꾸준히 사용하면 일회용컵 사용을 줄일 수 있지만, 효율적으로 사용하지 않으면서 여러 종류를 소유(정확히 말하면 소장)만 한다면 환경적인 효과를 기대하기 어려울 수도 있습니다.</p>
+                        <p class="upload_date">April 23, 2021</p>
+                        <span class="i save"></span>
+                    </div>
+                </div>
+                <div class="wrap_contents list">
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_1.jpeg" alt="비누열매, 소프넛 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">비누열매, 소프넛에 대해 알아볼까요?</p>
+                            <p class="dscr">소프넛은 천연계면활성제인 '사포닌'이 세정의 핵심성분입니다. 소프넛 열매에 있는 크고 단단한 씨앗을 제거하고 나면 과피가 남습니다. 이 소프넛 과피에 든 사포닌이 물을 만나 용출되어 나오면서 세정력이 생기는 것입니다.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_2.jpeg" alt="리필 스테이션 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">서울에 위치한 리필 스테이션을 소개합니다.</p>
+                            <p class="dscr">환경 보호의 중요성이 점차 강조되는 요즘, 제로웨이스트를 실천하는 곳과 개인이 늘어나고 있습니다. 국내 제로웨이스트 숍과 리필스테이션은 약 90곳 정도로 점차 늘어나고 있는데요. 그 중 서울지역의 제로웨이스트 숍 12곳을 소개합니다. 전부를 바꾸는 것은 불가능해도 쓰레기 없는 삶을 고려 중이라면 제로웨이스트를 실천 할 수 있는 곳을 찾아보고 방문해 보는 것은 어떨까요?</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_3.jpeg" alt="번거로운 포장 법, 용기내 챌린지 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">쓰레기는 빼기, 과정은 더하기 - 번거로운 포장 법</p>
+                            <p class="dscr">배우 류준열 씨의 개인 SNS에는 그가 직접 다회용기를 들고 대형마트에서 식품을 구매하는 사진이 올라왔었죠? 그 후에 ‘용기내 챌린지’에 대한 사람들의 관심이 커졌습니다. ‘용기내 챌린지’는 제로웨이스트(zero waste, 쓰레기 최대한 줄이기 운동)의 일환으로 일회용품 대신 다회용기를 사용하자는 운동입니다. 지난 1년간 코로나19 바이러스로 인해 언택트 문화가 확산되면서 음식배달 서비스 이용자가 급증했는데요. 그에 덩달아 플라스틱 혹은 종이로 만들어진 포장 용기의 사용량도 많아졌다고 합니다.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_4.jpeg" alt="작은 플라스틱 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">작은 플라스틱을 모아서 플라스틱 방앗간에 보내주세요.</p>
+                            <p class="dscr">매일 사용하는 원데이렌즈, 이렇게 작은 플라스틱들은 분리 배출하여도 재활용되지 않는다는 사실 알고 계셨나요? '야, 너도 치약짜개 될 수 있어!' 이제부터 작은 플라스틱을 모아주세요.병뚜껑, 일회용렌즈케이스처럼 재활용 되지 않는 작은 플라스틱을 모아서 플라스틱 방앗간에 보내면 치약짜개를 만들어 줍니다. 아예 안 쓸 수 없다면 사용량을 줄이고, 바르게 버리는 방법에 대해 함께 배워보아요.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_5.jpeg" alt="업사이클링 제품 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">업사이클링, 새활용 제품을 판매하는 스토어에 방문해 보세요.</p>
+                            <p class="dscr">환경을 위한 폐기물 처리 방법으로는 재활용이 일반적이지만, 재활용 과정에서 발생하는 폐기물의 물리적·화학적 변형은 자원 순환의 걸림돌이 되기도 합니다. 이 같은 재활용의 한계를 보완하기 위해 등장한 것이 바로 ‘업사이클’(upcycle), 우리말로는 ‘새활용’입니다. 새활용은 버려지는 자원에 디자인을 더하는 등 폐기물의 새로운 가치를 만들어내는 방법인데요. 최근 환경 문제에 대한 대중의 관심이 높아지고 있는 만큼, 새활용이 친환경적인 움직임으로 주목받고 있습니다.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_6.jpeg" alt="재래시장 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">주말엔 장바구니 챙겨서 재래시장으로 장보러 가요.</p>
+                            <p class="dscr">포장없는 장보기를 하러 갈 때엔 챙길 것이 많습니다. 꽤나 번거로우며 귀찮은 일이 아닐 수 없죠. 흙이 묻어 있는 채소를 담을 재사용 비닐주머니, 흙 없는 채소를 담을 천 주머니, 구입 목록에 따라 필요한 빈 용기, 장바구니를 모두 들고 집을 나서야합니다.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_7.jpeg" alt="플로깅 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">지구를 구하는 여정, 플로깅 크루가 되어주세요.</p>
+                            <p class="dscr">길거리에 버려진 담배꽁초, 쓰레기들이 미세플라스틱과 유해물질이 되어 결국 우리에게 돌아옵니다.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_8.jpeg" alt="DIY Beauty Recipes 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">To Buy or DIY? 간단한 친환경 뷰티 레시피를 확인하세요.</p>
+                            <p class="dscr">One of the things that I noticed when I first transitioned to a Zero Waste lifestyle (which side note, how was that nearly a decade ago now?? Time flies!!) was how much waste comes along with conventional beauty and personal care products. Between the tubes, bottles, sprays, aerosol cans, and other packaging, beauty routines can be pretty ugly for the planet. That’s why I stopped buying and started making a lot of my own products. And before you think, “I don’t have the time for that!”, trust me, doing it yourself can be quick and easy. You can make large quantities at a time, control the ingredients you are putting in and on your body, save money, AND save lots and lotsAND LOTS of unnecessary packaging waste. Not to mention, it’s also fun!</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                    <div class="content list">
+                        <div class="wrap_img bdr">
+                            <img src="/res/img/tips/tip_9.jpeg" alt="텀블러 이미지">
+                        </div>
+                        <div class="wrap_list">
+                            <p class="tit">텀블러를 더 환경적으로 사용하는 법</p>
+                            <p class="dscr">텀블러는 대표적인 ‘에코템’입니다. 일회용컵 사용을 줄일 수 있기 때문에 잘 사용하면 종이컵이나 플라스틱컵 사용을 크게 줄일 수 있습니다. 하지만 텀블러가 언제나, 그러니까 항상 환경적일까요? 텀블러를 꾸준히 사용하면 일회용컵 사용을 줄일 수 있지만, 효율적으로 사용하지 않으면서 여러 종류를 소유(정확히 말하면 소장)만 한다면 환경적인 효과를 기대하기 어려울 수도 있습니다.</p>
+                            <p class="upload_date">April 23, 2021</p>
+                            <span class="i save"></span>
+                            <span class="bdr-b"></span>
+                        </div>
+                    </div>
+                </div>
+            </article>
+        </section>
+        <!-- e: section -->
+        <!-- s: modal login -->
+        <div class="modal_login overlay">
+            <div class="popup">
+                <span class="i close"></span>
+                <p class="tit">로그인</p>   
+                <p class="msg_spt">신규 사용자이신가요?<a href="javascript:modalCreateAccount()">계정 만들기</a></p>
+                <form method="get">
+                    <fieldset>
+                        <div class="txt_field">
+                            <label for="email">이메일 주소</label>
+                            <input type="email" name="email" id="email">
+                            <p class="msg_error"></p>
+                        </div>
+                    </fieldset>
+                    <button class="btn g r">계속</button>
+                </form>
+                <div class="social_login">
+                    <p>간편 로그인</p>
+                    <div class="btn w">
+                        <img src="/res/img/icon/google.png" alt="">
+                        <p>Google</p>
+                        <div class="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                    <a href="javascript:kakaoLogin();"><button id="login_kakao">Kakao</button></a>
+                    <div class="btn w">
+                        <img src="/res/img/icon/naver.png" alt="">
+                        <button id="naver_id_login"></button>
+                    </div>
+                </div>
+                <div class="privacy">
+                    <a href="#">개인정보처리방침</a>
+                </div>
+            </div>
+            <script>
+                window.Kakao.init('6837dc955d4dc50317e861f0e16a429f');
+                function kakaoLogin(){
+                    window.Kakao.Auth.login({
+                        scope: 'profile, account_email',
+                        success: function(authObj){
+                            console.log(authObj);
+                            clickBtnCheckPass();
+                            window.Kakao.API.request({
+                                url: '/v2/user/me',
+                                success: res => {
+                                    const kakao_account = res.kakao_account;
+                                    console.log(kakao_account);
+                                }
+                            });
+                        }
+                    });
+                }
+                function onSignIn(googleUser){
+                    // Useful data for your client-side scripts:
+                    var profile = googleUser.getBasicProfile();
+                    console.log("ID: " + profile.getId()); // Don't send this directly to your server!
+                    console.log('Full Name: ' + profile.getName());
+                    console.log('Given Name: ' + profile.getGivenName());
+                    console.log('Family Name: ' + profile.getFamilyName());
+                    console.log("Image URL: " + profile.getImageUrl());
+                    console.log("Email: " + profile.getEmail());
+
+                    // The ID token you need to pass to your backend:
+                    var id_token = googleUser.getAuthResponse().id_token;
+                    console.log("ID Token: " + id_token);
+                    clickBtnCheckPass();
+                }
+                var naver_id_login = new naver_id_login("C2Opi_EePnLYXHnTDaqI", "http://rlanij.dothome.co.kr/res/api/callback.html");
+                var state = naver_id_login.getUniqState();
+                naver_id_login.setButton("white", 2,40);
+                naver_id_login.setDomain(".service.com");
+                naver_id_login.setState(state);
+                naver_id_login.setPopup();
+                naver_id_login.init_naver_id_login();
+                function test(data){
+                    console.log(data);
+                    clickBtnCheckPass();
+                }
+                function signOut() {
+                    gapi.auth2.getAuthInstance().disconnect();
+                    confirm('로그아웃 하시겠습니까?');
+                    location.reload();
+                }
+            </script>
+        </div>
+        <!-- e: modal login -->
+    </div>
+    <!-- s: footer -->
+    <footer>
+        <div class="wrap_footer">
+            <div class="ft_ctn">
+                <p class="copyright">&copy 2021 1D1Q.</p>
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">쿠키정책</a>
+                <a href="mailto:oneday1@gmail.com">문의하기</a>
+            </div>
+            <div class="i_sns">
+                <a href="https://www.instagram.com/"><img src="./res/img/icon/instagram.svg"></a>
+                <a href="https://twitter.com/"><img src="./res/img/icon/twitter.svg"></a>
+            </div>
+        </div>
+    </footer>
+    <!-- e: footer -->
+</body>
+</html>
