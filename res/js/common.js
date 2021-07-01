@@ -252,14 +252,13 @@ function clickBtnCreateAccount(){
     <p class="tit">안녕하세요. ${userNameVal}님</p><p class='msg'>로그인 하시겠습니까?</p>
     <button id="login" class="btn b f">로그인</button><button id="noThanks" class="btn g f">다음에</button>`
     );
-    $('.btn').css({'margin': '6px 0', 'width': '140px'});
-    $('#login').css('margin-right', '24px');
-    $('.msg').css('margin-bottom', '14px');
+    $('.btn').css({'width': '140px'});
+    $('#login').css('margin-right', '24px').click(loggedIn);;
+    $('.msg').css('margin-bottom', '40px');
     $('.i.close').click(function(){
         $('.modal_login').css('display', 'none');
         location.reload('.modal_login');
     });
-    $('#login').click(loggedIn);
     $('#noThanks').click(function(){
         $('.modal_login').css('display', 'none');
         location.reload('.modal_login');

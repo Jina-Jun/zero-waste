@@ -384,6 +384,7 @@ nav a:hover::before {
 .btn_login:hover {
     border: 2px solid #2F80ED;
     background-color: #2F80ED40;
+    cursor: pointer;
 }
 .wrap_thumb_user {
     width: 140px;
@@ -402,6 +403,7 @@ nav a:hover::before {
     color: #fff;
     position: absolute;
     right: 0;
+    cursor: pointer;
 }
 .thumb_dropdown {
     width: 100%;
@@ -417,6 +419,7 @@ nav a:hover::before {
 .thumb_dropdown li {
     padding: 10px 0;
     color: #EB5757;
+    cursor: pointer;
 }
 .search_bar {
     width: 468px;

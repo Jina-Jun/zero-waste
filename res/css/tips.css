@@ -28,6 +28,7 @@
 .show.list, .show.grid {
     display: flex;
     align-items: center;
+    cursor: pointer;
 }
 .viewer .i {
     margin-right: 10px;
@@ -77,7 +78,7 @@
     float: left;
 }
 .wrap_tit .tit {
-    padding-top: 3px;
+    padding-top: 6px;
 }
 .wrap_tit {
     display: flex;
